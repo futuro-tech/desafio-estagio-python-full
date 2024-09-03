@@ -106,7 +106,7 @@ def update_task(task_id):
         description = data['description']
         status = data['status']
         cur = mysql.cursor()
-        cur.execute('UPDATE tasks SET description = %s, status = %s WHERE id = %s', (description, status, task_id))
+        cur.execute('UPDATE tasks SET description = %s, status = %s WHERE id = %s', ( task_id))
         mysql.commit()
         cur.close()
         response = {
@@ -129,7 +129,6 @@ def delete_task(task_id):
     try:
         cur = mysql.cursor()
         cur.execute('DELETE FROM tasks WHERE id = %s', (task_id,))
-        mysql.commit()
         cur.close()
         response = {
             'error': False,
